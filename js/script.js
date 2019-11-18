@@ -14,6 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
         .forEach(columnElement => {
             Column.process(columnElement)
         })
+    document
+        .querySelectorAll('.note')
+        .forEach(noteElement => {
+            Note.process(noteElement)
+        })
 
     Delete.process();
 })
