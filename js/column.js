@@ -110,12 +110,5 @@ const Column = {
         
 
         return newCol;
-    },
-
-    delete(elementToDelete) {
-        elementToDelete.remove();
-    }
-
-
-    
+    },    
 }

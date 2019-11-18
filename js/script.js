@@ -9,6 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
             Application.save();
         });
     
+    document
+        .querySelectorAll('.column')
+        .forEach(columnElement => {
+            Column.process(columnElement)
+        })
+
     Delete.process();
 })
 

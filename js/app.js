@@ -49,28 +49,30 @@ const Application = {
     },
 
     load() {
-        if(!localStorage.getItem('trello')) {
-            return
-        }
-        const mountPoint = document.querySelector('.columns');
-        mountPoint.innerHTML = '';
+        if(localStorage.getItem('trello')) {
+            const mountPoint = document.querySelector('.columns');
+            mountPoint.innerHTML = '';
 
-        const object = JSON.parse(localStorage.getItem('trello'));
-        
-        
-        const getNoteById = id => object.notes.items.find(note => note.id === id);
-        
-        for(const column of object.columns.items) {
-            const columnElement = Column.createNew(column.idCounter, column.title);
-            mountPoint.append(columnElement);
+            const object = JSON.parse(localStorage.getItem('trello'));
+            
+            
+            const getNoteById = id => object.notes.items.find(note => note.id === id);
+            
+            for(const column of object.columns.items) {
+                const columnElement = Column.createNew(column.idCounter, column.title);
+                mountPoint.append(columnElement);
 
-            for(const noteId of column.notesIds) {
-                const note = getNoteById(noteId)
-                
-                const noteElement = Note.create(note.id , note.content);
-                columnElement.querySelector('[data-notes]').append(noteElement);
+                for(const noteId of column.notesIds) {
+                    const note = getNoteById(noteId)
+                    
+                    const noteElement = Note.create(note.id , note.content);
+                    columnElement.querySelector('[data-notes]').append(noteElement);
+                }
+
             }
-
+        } else {
+            console.log('init default');
         }
+       
     }
 }
